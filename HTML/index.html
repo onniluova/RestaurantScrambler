@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ruokalistat</title>
+    <link rel="stylesheet" href="/CSS/styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+</head>
+<body>
+    <div class="topBar">
+        <h1>Ruokalistat</h1>
+        <div class="buttons">
+            <button>Login</button>
+            <button>Register</button>
+        </div>
+    </div>
+
+    <div class="middleSection">
+        <h2>Ravintolat: </h2>
+    </div>
+
+    <div id="ravintolatSection">
+        <div id="map"></div>
+        <div id="ravintolaDetails">
+            <h2>Ravintola: </h2>
+            <p> Osoite: </p>
+            <p> Aukioloajat: </p>
+            <p> Ruokalista: </p>
+        </div>
+    </div>
+
+    <footer> Copyright ruokalistat.fi 2024 </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+    <script src="/JS/maps.js"> </script>
+</body>
+</html>

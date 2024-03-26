@@ -1,0 +1,79 @@
+body {
+    font-family: "Bell MT";
+}
+
+.topBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-style: groove;
+    color: black;
+    background-color: aliceblue;
+}
+
+.topBar h1 {
+    padding: 10px;
+    font-size: 50px;
+    color: cornflowerblue;
+    text-shadow: 2px 2px 4px lightsteelblue;
+    transition: color 0.5s ease-in-out;
+}
+
+.topBar button {
+    font-family: "Bell MT"; /* Change the font of the button */
+    font-size: 25px; /* Change the font size */
+    color: white; /* Change the text color */
+    background-color: lightsteelblue; /* Change the background color */
+    border: black;
+    padding: 5px 30px; /* Add some padding */
+    text-decoration: none; /* Remove underline */
+    display: inline-block;
+    margin: 5px 2px;
+    cursor: pointer; /* Change the cursor when you hover over the button */
+    transition-duration: 0.2s; /* Add transition effect */
+    border-radius: 5px;
+}
+
+.topBar .buttons {
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+.topBar button:hover {
+    background-color: dodgerblue; /* Change the background color when you hover over the button */
+}
+
+#middleSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightsteelblue;
+    border-style: groove;
+    color: black;
+    margin-top: 3px;
+    padding: 1px;
+}
+
+footer {
+    text-align: center;
+}
+
+#ravintolatSection {
+    display: flex;
+    justify-content: space-between;
+}
+
+#ravintolaDetails {
+    border: 5px black;
+    padding: 10px;
+    background-color: lightsteelblue;
+    flex: 1;
+    text-align: left;
+}
+
+#map {
+    flex: 1;
+    height: 400px;
+    width: 500px;
+    margin-top: 3px;
+}
