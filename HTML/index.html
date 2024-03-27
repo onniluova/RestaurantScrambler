@@ -12,7 +12,7 @@
     <div class="topBar">
         <h1>Ruokalistat</h1>
         <div class="buttons">
-            <button>Login</button>
+            <button id="loginButton">Login</button>
             <button>Register</button>
         </div>
     </div>
@@ -24,18 +24,31 @@
     <div id="ravintolatSection">
         <div id="map"></div>
         <div id="ravintolaDetails">
-            <h2>Ravintola: </h2>
+            <h2>Ravintolan nimi: </h2>
             <p> Osoite: </p>
             <p> Aukioloajat: </p>
             <p> Ruokalista: </p>
         </div>
     </div>
 
-    <footer> Copyright ruokalistat.fi 2024 </footer>
+    <dialog id="loginModal">
+        <form action=""></form>
+        <h1>Login</h1>
+        <label for="username">Käyttäjänimi: </label>
+        <input type="text" id="username" name="username">
+        <label for="salasana">Salasana: </label>
+        <input type="text" id="salasana" name="salasana">
+        <button id="login">Login</button>
+        <button id="openRegister">Register</button>
+        <button id="closeLogin">&#9932;</button>
+    </dialog>
+
+    <footer> Copyright ruokalistat.fi 2024 ©</footer>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
     <script src="/JS/maps.js"> </script>
+    <script src="/JS/buttonActions.js"> </script>
 </body>
 </html>
