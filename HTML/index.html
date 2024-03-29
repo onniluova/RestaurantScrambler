@@ -13,7 +13,7 @@
         <h1>Ruokalistat</h1>
         <div class="buttons">
             <button id="loginButton">Login</button>
-            <button>Register</button>
+            <button id="registerButton">Register</button>
         </div>
     </div>
 
@@ -34,16 +34,48 @@
     <dialog id="loginModal">
         <form action=""></form>
         <h1>Login</h1>
-        <label for="username">Käyttäjänimi: </label>
-        <input type="text" id="username" name="username">
-        <label for="salasana">Salasana: </label>
-        <input type="text" id="salasana" name="salasana">
-        <button id="login">Login</button>
-        <button id="openRegister">Register</button>
-        <button id="closeLogin">&#9932;</button>
+        <div>
+            <label for="username">Käyttäjänimi: </label>
+        </div>
+        <div>
+            <input type="text" id="username" name="username">
+        </div>
+        <div>
+            <label for="salasana">Salasana: </label>
+        </div>
+        <div>
+            <input type="text" id="salasana" name="salasana">
+        </div>
+        <div>
+            <button id="login">Login</button>
+            <button id="openRegister">Register</button>
+            <button id="closeLogin">&#9932;</button>
+        </div>
     </dialog>
 
-    <footer> Copyright ruokalistat.fi 2024 ©</footer>
+    <dialog id="registerModal">
+        <form action=""></form>
+        <h1>Register</h1>
+        <div>
+            <label for="username">Käyttäjänimi: </label>
+        </div>
+        <div>
+            <input type="text" id="rUsername" name="username">
+        </div>
+        <div>
+            <label for="salasana">Salasana: </label>
+        </div>
+        <div>
+            <input type="text" id="rSalasana" name="salasana">
+        </div>
+        <div>
+            <button id="registerAccount">Register</button>
+            <button id="switchToLogin">Login</button>
+            <button id="closeRegister">&#9932;</button>
+        </div>
+    </dialog>
+
+    <footer> ruokalistat.fi 2024 © </footer>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
