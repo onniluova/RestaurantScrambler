@@ -33,7 +33,13 @@ login.addEventListener('click', async function() {
     });
 
     const result = await response.json();
-    // Handle login result
+
+    if (result.id) { // Check for user ID in the response
+        alert('Login successful!');
+        // Handle successful login (e.g., redirect, store user data)
+    } else {
+        alert('Invalid username or password');
+    }
 });
 
 //Register modalin toiminta
@@ -63,4 +69,13 @@ let register = document.getElementById('registerAccount');
 register.addEventListener('click', async function() {
     let username = document.getElementById('rUsername').value;
     let password = document.getElementById('rSalasana').value;
+
+    const response = await fetch('/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+    });
+
+    const result = await response.text(); // Capture the response text
+    alert(result); // Display the result from the server
 });

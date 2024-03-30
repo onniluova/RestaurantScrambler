@@ -75,6 +75,22 @@ footer {
     margin-left: 3px;
 }
 
+#menus {
+    border: 1px solid black;
+    align-content: center;
+    padding: 10px 20px;
+    background-color: lightsteelblue;
+    flex: 1;
+    text-align: center;
+    margin-left: 3px;
+}
+
+
+#menus button {
+    font-family: "Bell MT", serif;
+    font-size: 20px;
+}
+
 #map {
     border: 1px solid black;
     padding: 10px;

@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const dbConfig = {
     host: 'localhost',
     user: 'appuser',
-    password: '1234',
+    password: 'PASSWORD',
     database: 'credentials_db'
 };
 
@@ -16,7 +16,7 @@ async function registerUser(username, password) {
         const hashedPassword = await bcrypt.hash(password, 10); // 10 is a common bcrypt salt round
 
         const [result] = await conn.execute(
-            "INSERT INTO credentials (username, password) VALUES (?, ?)",
+            "INSERT INTO credentials (username, user_password) VALUES (?, ?)",
             [username, hashedPassword]
         );
 
@@ -27,7 +27,9 @@ async function registerUser(username, password) {
     }
 }
 
+module.exports = { registerUser };
+
 // Example Usage (assuming you have a way to get form data)
-const username = 'newuser';
+/* const username = 'newuser';
 const password = 'userpassword';
-registerUser(username, password);
+registerUser(username, password); */
