@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
           crossorigin=""/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="topBar">
@@ -15,75 +18,76 @@
             <button id="loginButton">Login</button>
             <button id="registerButton">Register</button>
         </div>
+        </div>
     </div>
 
     <div class="middleSection">
-        <h2>Ravintolat: </h2>
+        <h2>Ravintola scrambler</h2>
     </div>
 
     <div id="ravintolatSection">
         <div id="map"></div>
         <div id="ravintolaDetails">
-            <h2>Ravintolan nimi: </h2>
-            <p> Osoite: </p>
-            <p> Aukioloajat: </p>
+            <h2 id="ravintolanNimi">Ravintolan nimi</h2>
+            <p id="ravintolanOsoite"> Osoite</p>
             <div id="menus">
-                <button>Daily menu</button>
-                <button>Weekly menu</button>
+                <button id="dailyButton">Daily menu</button>
+                <button id="weeklyButton">Weekly menu</button>
             </div>
             <div id="menusBox">
-                <div id="dailyMenu">
-                    <h3>Päivän ruokalista: </h3>
-                </div>
-                <div id="weeklyMenu">
-                    <h3>Viikon ruokalista: </h3>
-                </div>
             </div>
         </div>
     </div>
 
     <dialog id="loginModal">
-        <form action=""></form>
-        <h1>Login</h1>
-        <div>
-            <label for="username">Käyttäjänimi: </label>
-        </div>
-        <div>
-            <input type="text" id="username" name="username">
-        </div>
-        <div>
-            <label for="salasana">Salasana: </label>
-        </div>
-        <div>
-            <input type="text" id="salasana" name="salasana">
-        </div>
-        <div>
-            <button id="login">Login</button>
-            <button id="openRegister">Register</button>
-            <button id="closeLogin">&#9932;</button>
-        </div>
+        <form id="login" method="POST" action="/login"> <h1>Login</h1>
+            <div>
+                <label for="username">Käyttäjänimi: </label>
+            </div>
+            <div>
+                <input type="text" id="username" name="username">
+            </div>
+            <div>
+                <label for="salasana">Salasana: </label>
+            </div>
+            <div>
+                <input type="password" id="salasana" name="salasana"> </div>
+            <div>
+                <button type="submit">Login</button> <button id="openRegister">Register</button>
+                <button id="closeLogin">&#9932;</button>
+            </div>
+        </form>
     </dialog>
 
     <dialog id="registerModal">
-        <form action=""></form>
-        <h1>Register</h1>
-        <div>
-            <label for="username">Käyttäjänimi: </label>
-        </div>
-        <div>
-            <input type="text" id="rUsername" name="username">
-        </div>
-        <div>
-            <label for="salasana">Salasana: </label>
-        </div>
-        <div>
-            <input type="text" id="rSalasana" name="salasana">
-        </div>
-        <div>
-            <button id="registerAccount">Register</button>
-            <button id="switchToLogin">Login</button>
-            <button id="closeRegister">&#9932;</button>
-        </div>
+        <form id="registerAccount" method="POST" action="/register"> <h1>Register</h1>
+            <div>
+                <label for="rUsername">Käyttäjänimi: </label>
+            </div>
+            <div>
+                <input type="text" id="rUsername" name="username">
+            </div>
+            <div>
+                <label for="rSalasana">Salasana: </label>
+            </div>
+            <div>
+                <input type="password" id="rSalasana" name="salasana">
+            </div>
+            <div>
+                <button type="submit">Register</button> <button id="switchToLogin">Login</button>
+                <button id="closeRegister">&#9932;</button>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog id="loginSuccessModal">
+        <h1>Login Successful</h1>
+        <button id="closeLoginSuccess">&#9932;</button>
+    </dialog>
+
+    <dialog id="registerSuccessModal">
+        <h1>Registration Successful</h1>
+        <button id="closeRegisterSuccess">&#9932;</button>
     </dialog>
 
     <footer> ruokalistat.fi 2024 © </footer>
@@ -91,7 +95,8 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
-    <script src="/JS/maps.js"> </script>
-    <script src="/JS/buttonActions.js"> </script>
+    <script type="module" src="/JS/maps.js"></script>
+    <script src="/JS/buttonActions.js"></script>
+    <script src="/JS/fetch-api.js"></script>
 </body>
 </html>

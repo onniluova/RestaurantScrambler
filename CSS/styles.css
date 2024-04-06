@@ -1,37 +1,73 @@
 body {
-    font-family: "Bell MT";
+    font-family: "Jost", sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: black;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    display: flex;
+    flex: 1; /* This will make the content div take up all available space */
 }
 
 .topBar {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-style: groove;
-    color: black;
-    background-color: aliceblue;
+    color: #333; /* Dark grey text */
+    background-color: black; /* Light grey background */
+    height: 20%
+}
+
+@keyframes colorChange {
+    0% { color: #ffffff; }
+    25% { color: #00ff00; }
+    50% { color: #ffffff; }
+    75% { color: #4fff00; }
+    100% { color: #ffffff; }
+}
+
+@keyframes wiggle {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(-5deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(5deg); }
+    100% { transform: rotate(0deg); }
 }
 
 .topBar h1 {
     padding: 10px;
-    font-size: 50px;
-    color: black;
-    text-shadow: 2px 2px 4px lightsteelblue;
+    font-size: 60px;
+    color: #333; /* Dark grey text */
     transition: color 0.5s ease-in-out;
+    animation: colorChange 5s infinite, wiggle 2s infinite;
+}
+
+.topBar h1:hover {
+    color: #FF0000; /* Red text on hover */
+    font-size: 60px;
 }
 
 /* Kommentit generoitu AI:lla muistutuksena. */
 .topBar button {
-    font-family: "Bell MT"; /* Change the font of the button */
-    font-size: 25px; /* Change the font size */
-    color: white; /* Change the text color */
-    background-color: lightsteelblue; /* Change the background color */
-    border: black;
-    padding: 5px 30px; /* Add some padding */
-    text-decoration: none; /* Remove underline */
+    font-family: "Jost", sans-serif;
+    font-size: 25px;
+    color: #333; /* Dark grey text */
+    background-color: #EEE; /* Light grey background */
+    border: 1px solid #BBB; /* Light grey border */
+    padding: 5px 30px;
+    text-decoration: none;
     display: inline-block;
     margin: 5px 2px;
-    cursor: pointer; /* Change the cursor when you hover over the button */
-    transition-duration: 0.2s; /* Add transition effect */
+    cursor: pointer;
+    transition-duration: 0.2s;
     border-radius: 5px;
 }
 
@@ -41,45 +77,49 @@ body {
 }
 
 .topBar button:hover {
-    background-color: dodgerblue; /* Change the background color when you hover over the button */
+    background-color: #DDD; /* Darker grey on hover */
+    color: #111; /* Darker text on hover */
 }
 
 .middleSection {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: lightsteelblue;
-    border-style: groove;
-    color: black;
+    background-color: #F5F5F5;
+    color: #333;
     margin-top: 3px;
+    margin-bottom: 3px;
     padding: 1px;
+    height: 5%;
 }
 
 footer {
     text-align: center;
-    margin-top: 30px;
+    transition: color 0.5s ease-in-out;
+    animation: colorChange 5s infinite;
 }
 
 #ravintolatSection {
     display: flex;
-    margin-top: 3px;
     justify-content: space-between;
+    height: 80%;
 }
 
 #ravintolaDetails {
-    border: 1px solid black;
+    height: 97%;
+    border: 1px solid #BBB; /* Light grey border */
     padding: 10px;
-    background-color: lightsteelblue;
+    background-color: #F5F5F5; /* Light grey background */
     flex: 1;
     text-align: left;
     margin-left: 3px;
 }
 
 #menus {
-    border: 1px solid black;
+    border: 1px solid #BBB; /* Light grey border */
     align-content: center;
     padding: 10px 20px;
-    background-color: lightsteelblue;
+    background-color: #F5F5F5; /* Light grey background */
     flex: 1;
     text-align: center;
     margin-left: 3px;
@@ -87,90 +127,75 @@ footer {
 
 
 #menus button {
-    font-family: "Bell MT", serif;
+    font-family: "Jost", sans-serif;
     font-size: 20px;
+    color: #333; /* Dark grey text */
+    background-color: #EEE; /* Light grey background */
+    border: 1px solid #BBB; /* Light grey border */
+    padding: 5px 30px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px 2px;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    border-radius: 5px;
+}
+
+#menus button:hover {
+    background-color: #DDD; /* Darker grey on hover */
+    color: #111; /* Darker text on hover */
 }
 
 #map {
     border: 1px solid black;
     padding: 10px;
     flex: 1;
-    height: 500px;
+    height: 97%; /* Set the height to 100% of the parent div */
     width: 500px;
 }
 
-#loginModal {
-    position: relative;
-    display: none;
-    border: 1px solid black;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 300px;
-    height: 200px;
-    overflow: hidden;
-    background-color: lightsteelblue;
+/* General Modal Styling */
+#loginModal, #registerModal {
+    background-color: #F0F0F0; /* Light, neutral background */
+    border: 2px solid #666;    /* Slightly darker border */
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.6); /* Subtle shadow effect */
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;        /* Rounds the corners */
 }
 
-#openRegister{
-    font-family: "Bell MT";
-    font-size: 15px;
-    position: absolute;
-    bottom: 60px;
-    right: 18px;
+/* Form Styling */
+#login, #registerAccount {
+    margin-top: 20px;          /* Space above the forms */
 }
 
-#login {
-    font-family: "Bell MT";
-    font-size: 25px;
-    position: absolute;
-    bottom: 90px;
-    left: 241px;
+#login label,
+#registerAccount label {
+    display: block;            /* Labels above input fields */
+    margin-bottom: 5px;
 }
 
-#closeLogin {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 10px;
-    color: black;
-    background-color: ghostwhite;
+#login input[type="text"],
+#login input[type="password"],
+#registerAccount input[type="text"],
+#registerAccount input[type="password"] {
+    width: 85%;               /* Make input fields wider */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #CCC;
+    border-radius: 4px;
 }
 
-#registerModal {
-    position: relative;
-    display: none;
-    border: 1px solid black;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 300px;
-    height: 200px;
-    overflow: hidden;
-    background-color: lightsteelblue;
+/* Close Button Styling (More Prominent) */
+#closeLogin, #closeRegister {
+    font-size: 18px;
+    background-color: #eee;
+    border: none;
+    padding: 3px 8px;
+    border-radius: 50%;        /* Round button */
+    cursor: pointer;
 }
 
-#switchToLogin {
-    font-family: "Bell MT";
-    font-size: 20px;
-    position: absolute;
-    bottom: 60px;
-    right: 27px;
-}
-
-#registerAccount {
-    font-family: "Bell MT";
-    font-size: 25px;
-    position: absolute;
-    bottom: 90px;
-    left: 220px;
-}
-
-#closeRegister {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 10px;
-    color: black;
-    background-color: ghostwhite;
+#closeLogin:hover, #closeRegister:hover {
+    background-color: #ddd;
 }
