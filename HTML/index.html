@@ -9,20 +9,23 @@
           crossorigin=""/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap" rel="stylesheet">
+
 </head>
 <body>
-    <div class="topBar">
-        <h1>Ruokalistat</h1>
-        <div class="buttons">
-            <button id="loginButton">Login</button>
-            <button id="registerButton">Register</button>
-        </div>
-        </div>
+<div class="topBar">
+    <div class="logo">
+        <h1>Ravintola Scrambler</h1>
     </div>
+    <div class="buttons">
+        <button id="loginButton">Login</button>
+        <button id="registerButton">Register</button>
+        <button id="profiili">Profiili</button>
+    </div>
+</div>
 
     <div class="middleSection">
-        <h2>Ravintola scrambler</h2>
+        <h2>Scrambler</h2>
     </div>
 
     <div id="ravintolatSection">
@@ -56,6 +59,7 @@
                 <button type="submit">Login</button> <button id="openRegister">Register</button>
                 <button id="closeLogin">&#9932;</button>
             </div>
+            <div id="loginErrorMessage"></div>
         </form>
     </dialog>
 
@@ -77,6 +81,7 @@
                 <button type="submit">Register</button> <button id="switchToLogin">Login</button>
                 <button id="closeRegister">&#9932;</button>
             </div>
+            <div id="registerErrorMessage"></div>
         </form>
     </dialog>
 

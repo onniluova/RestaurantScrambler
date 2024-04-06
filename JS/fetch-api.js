@@ -21,14 +21,15 @@ loginForm.addEventListener('submit', async (event) => {
 
     const data = await response.json();
 
-    // Handle the response
-    console.log(data.message);
-
     if (response.status === 200) {
         console.log('User logged in');
         lModal.style.display = 'none';
         lModal.close();
         loginSuccessModal.showModal();
+        loginSuccessModal.style.backgroundColor = 'green';
+    } else {
+        // Display error message
+        document.getElementById('loginErrorMessage').textContent = data.message;
     }
 });
 
@@ -48,17 +49,15 @@ registerForm.addEventListener('submit', async (event) => {
 
     const data = await response.json();
 
-    console.log(data);
-
     if (response.status === 201) {
-        // Redirect to the home page or show a success message
         console.log('User registered');
         rModal.style.display = 'none';
         rModal.close();
         registerSuccessModal.showModal();
+        registerSuccessModal.style.backgroundColor = 'green';
     } else {
-        // Handle error, show error message
-        console.log('Error:', data);
+        // Display error message
+        document.getElementById('registerErrorMessage').textContent = data.message;
     }
 });
 
