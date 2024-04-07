@@ -17,6 +17,20 @@ html, body {
     flex: 1; /* This will make the content div take up all available space */
 }
 
+@media (max-width: 768px) {
+    .topBar .buttons {
+        flex-direction: column;
+    }
+
+    #ravintolatSection {
+        flex-direction: column;
+    }
+
+    #map {
+        width: 100%;
+    }
+}
+
 .topBar {
     display: flex;
     flex-direction: column;
@@ -28,11 +42,11 @@ html, body {
 }
 
 @keyframes colorChange {
-    0% { color: #ffffff; }
-    25% { color: #8c8c8c; }
-    50% { color: #ffffff; }
-    75% { color: #5d5d5d; }
-    100% { color: #ffffff; }
+    0% { color: #f8c806; }
+    25% { color: #f4ce54; }
+    50% { color: #fcac0c; }
+    75% { color: #f0c000; }
+    100% { color: #f1d484; }
 }
 
 @keyframes wiggle {
@@ -59,7 +73,7 @@ html, body {
     font-family: "Unbounded", sans-serif;
     font-size: 25px;
     color: #333;
-    background-color: #EEE;
+    background-color: #ffd664;
     border: 1px solid #888888;
     padding: 10px 30px;
     text-decoration: none;
@@ -81,7 +95,7 @@ html, body {
 }
 
 .topBar button:hover {
-    background-color: #ffffff; /* Darker grey on hover */
+    background-color: #ffe699; /* Darker grey on hover */
     color: #111; /* Darker text on hover */
     font-size: 30px;
 }
@@ -90,7 +104,7 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f5f5f5;
+    background-color: #ffce57;
     color: #000000;
     margin-top: 3px;
     margin-bottom: 3px;
@@ -117,7 +131,7 @@ footer {
 
 #ravintolaDetails {
     font-size: 25px;
-    color: #c7c7c7;
+    color: #f5cf97;
     height: 97%;
     border: 1px solid #000000;
     padding: 10px;
@@ -144,7 +158,7 @@ footer {
     font-family: "Unbounded", sans-serif;
     font-size: 20px;
     color: #3f3f3f;
-    background-color: #ffffff;
+    background-color: #ffb300;
     border: 1px solid #000000;
     padding: 5px 30px;
     text-decoration: none;
@@ -157,7 +171,7 @@ footer {
 }
 
 #menus button:hover {
-    background-color: #DDD;
+    background-color: #ffe3b2;
     color: #111;
     font-size: 25px;
 }
@@ -175,8 +189,8 @@ footer {
     100% { transform: scale(1); }
 }
 
-#loginModal, #registerModal  #profileModal {
-    background-color: #F0F0F0;
+#loginModal, #registerModal, #profileModal {
+    background-color: #eec153;
     border: 2px solid #666;
     box-shadow: 5px 5px 10px rgba(0,0,0,0.6);
     padding: 100px;
@@ -188,7 +202,7 @@ footer {
 
 #openRegister, #closeLogin, #switchToLogin, #closeRegister, #login input[type="submit"], #registerAccount input[type="submit"] {
     font-family: "Unbounded", sans-serif;
-    background-color: #ffffff;
+    background-color: #ffe2a3;
     color: #000000;
     font-size: 15px;
     transition: 0.5s all;
@@ -197,7 +211,7 @@ footer {
 }
 
 #openRegister:hover, #closeLogin:hover, #switchToLogin:hover, #closeRegister:hover, #login input[type="submit"]:hover, #registerAccount input[type="submit"]:hover {
-    background-color: #9b9b9b;
+    background-color: #ffffff;
     font-size: 18px;
 }
 
@@ -208,7 +222,7 @@ footer {
 }
 
 #login button[type="submit"], #registerAccount button[type="submit"] {
-    background-color: #ffffff;
+    background-color: #ffe2a3;
     font-family: "Unbounded", sans-serif;
     color: #000000;
     font-size: 15px;
@@ -229,20 +243,57 @@ footer {
     width: 85%;               /* Make input fields wider */
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #CCC;
+    border: 1px solid #000000;
     border-radius: 4px;
 }
 
 /* Close Button Styling (More Prominent) */
 #closeLogin, #closeRegister {
     font-size: 18px;
-    background-color: #eee;
+    background: none;
     border: none;
     padding: 3px 8px;
-    border-radius: 50%;        /* Round button */
+    border-radius: 50%;
     cursor: pointer;
 }
 
 #closeLogin:hover, #closeRegister:hover {
-    background-color: #ddd;
+    font-size: 20px;
+    background-color: #f9be4f;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 2);
+    display: none;
+    transition: background-color 1s ease-in-out;
+}
+
+.favorite-button {
+    font-family: "Unbounded", sans-serif;
+    border: whitesmoke;
+    font-size: 12px;
+    border-radius: 5px;
+    transition: 1s all;
+}
+
+.favorite-button:hover {
+    background-color: #ffd900;
+    font-size: 15px;
+}
+
+.popup-nimi {
+    font-family: "Unbounded", sans-serif;
+    font-size: 18px;
+}
+
+.favorite-popup {
+    color: #ffd900; /* Change this to your preferred text color */
+    border-color: #1c1c1c;
+    transition: 0.5s all;
+    font-size: 5px;
 }

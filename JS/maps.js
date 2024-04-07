@@ -26,6 +26,12 @@ async function getRestaurants() {
     });
 }
 
+let yellowIcon = L.icon({
+    iconUrl: '/yellowmarker.png',
+    iconSize: [30, 41],
+    iconAnchor: [15, 25],
+});
+
 async function initMap() {
     await getRestaurants();
 
@@ -39,25 +45,65 @@ async function initMap() {
     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
     restaurants.forEach(restaurant => {
-        let marker = L.marker([restaurant.location.coordinates[1], restaurant.location.coordinates[0]]).addTo(map)
-            .bindPopup(`<p>${restaurant.name}</p><button id="Favorite-${restaurant._id}">Suosikki</button>`)
+        let marker = L.marker([restaurant.location.coordinates[1], restaurant.location.coordinates[0]], {icon: yellowIcon}).addTo(map)
+            .bindPopup(`<p class="popup-nimi">${restaurant.name}</p><button class="favorite-button" id="Favorite-${restaurant._id}">Suosikki</button>`)
             .openPopup();
 
         marker.restaurantData = restaurant;
 
         marker.on('click', async function() {
-
             async function getDailyMenu(id) {
                 const data = await fetchData(`${baseUrl}/daily/${id}/fi`);
                 return data;
             }
 
+            let favoriteButton = document.getElementById(`Favorite-${restaurant._id}`);
+            if (favorites.find(favorite => favorite._id === restaurant._id)) {
+                this.getPopup().getElement().classList.add('favorite-popup');
+                favoriteButton.textContent = "Poista suosikeista";
+            } else {
+                this.getPopup().getElement().classList.remove('favorite-popup');
+                favoriteButton.textContent = "Suosikki";
+            }
+
+            favoriteButton.addEventListener('click', function() {
+                let usernameLogged = localStorage.getItem('usernameLogged');
+
+                if (!usernameLogged) {
+                    alert("Sinun täytyy kirjautua sisään lisätäksesi suosikkeja.");
+                    return;
+                }
+
+                let restaurant = marker.restaurantData;
+                let favoriteRestaurants = JSON.parse(localStorage.getItem(usernameLogged)) || [];
+
+                let index = favorites.findIndex(favorite => favorite._id === restaurant._id);
+                if (index !== -1) {
+                    favorites.splice(index, 1);
+                    this.textContent = "Suosikki";
+                    setTimeout(() => {
+                        this.closest('.leaflet-popup-content').classList.remove('favorite-popup');
+                    }, 5);
+                    localStorage.removeItem('favorite');
+                } else {
+                    if (favorites.length > 0) {
+                        alert("Sinulla voi olla vain yksi suosikki ravintola.");
+                    } else {
+                        favorites.push(restaurant);
+                        this.textContent = "Poista suosikeista";
+                        setTimeout(() => {
+                            this.closest('.leaflet-popup-content').classList.add('favorite-popup');
+                        }, 5);
+                        localStorage.setItem('favorite', JSON.stringify(restaurant));
+                    }
+                }
+                localStorage.setItem(usernameLogged, JSON.stringify(favoriteRestaurants));
+            });
+
             marker.on('popupopen', function() {
-                let favoriteButton = document.getElementById(`Suosikki-${restaurant._id}`);
-                favoriteButton.addEventListener('click', function() {
-                    favorites.push(restaurant);
-                    localStorage.setItem('favorites', JSON.stringify(favorites));
-                });
+                if (favorites.find(favorite => favorite._id === restaurant._id)) {
+                    this.getPopup().getElement().classList.add('favorite-popup');
+                }
             });
 
             async function getWeeklyMenu(id) {
@@ -86,13 +132,12 @@ async function initMap() {
             ravintolanOsoite.innerHTML = restaurantAddress;
 
             let daily = document.createElement("p");
-            daily.innerHTML = 'Daily menu:';
+            daily.innerHTML = 'Päivän menu:';
             restaurantSection.appendChild(daily);
 
             restaurantData.courses.forEach(course => {
                 let menuItem = document.createElement("p");
 
-                // Format the menu item data into a string
                 let menuItemString = `${course.name} - ${course.price} - Diets: ${course.diets.join(', ')}`;
 
                 menuItem.innerHTML = menuItemString;
@@ -112,7 +157,7 @@ async function initMap() {
                 restaurantSection.innerHTML = '';
 
                 let weekly = document.createElement("p");
-                weekly.innerHTML = 'Weekly menu:';
+                weekly.innerHTML = 'Viikon menu:';
                 restaurantSection.appendChild(weekly);
 
                 weeklyMenuData.days.forEach(day => {
@@ -164,7 +209,6 @@ async function initMap() {
                     dailyMenuData.courses.forEach(course => {
                         let menuItem = document.createElement("p");
 
-                        // Format the menu item data into a string
                         let menuItemString = `${course.name} - ${course.price} - Diets: ${course.diets.join(', ')}`;
 
                         menuItem.innerHTML = menuItemString;

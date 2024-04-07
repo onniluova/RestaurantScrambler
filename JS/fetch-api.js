@@ -28,8 +28,14 @@ loginForm.addEventListener('submit', async (event) => {
         lModal.style.display = 'none';
         lModal.close();
         loginSuccessModal.showModal();
-        loginSuccessModal.style.backgroundColor = 'green';
+        loginSuccessModal.style.backgroundColor = 'yellow';
         usernameLogged = username;
+        localStorage.setItem('usernameLogged', usernameLogged);
+
+        loginButton.style.display = 'none';
+        registerBtn.style.display = 'none';
+
+        logoutButton.style.display = 'block';
     } else {
         // Display error message
         document.getElementById('loginErrorMessage').textContent = data.message;
@@ -38,6 +44,11 @@ loginForm.addEventListener('submit', async (event) => {
 
 registerForm.addEventListener('submit', async (event) => {
     event.preventDefault();
+
+    if (rModal.style.display === 'none') {
+        event.preventDefault();
+        return;
+    }
 
     const username = document.getElementById('rUsername').value;
     const password = document.getElementById('rSalasana').value;
@@ -57,14 +68,12 @@ registerForm.addEventListener('submit', async (event) => {
         rModal.style.display = 'none';
         rModal.close();
         registerSuccessModal.showModal();
-        registerSuccessModal.style.backgroundColor = 'green';
+        registerSuccessModal.style.backgroundColor = 'yellow';
     } else {
-        // Display error message
         document.getElementById('registerErrorMessage').textContent = data.message;
     }
 });
 
-// Add event listeners to close the success modals
 document.getElementById('closeLoginSuccess').addEventListener('click', function() {
     loginSuccessModal.close();
 });
@@ -82,6 +91,14 @@ let closeProfile = document.getElementById('closeProfile');
 profiiliAvaus.addEventListener('click', function() {
     profiiliModal.style.display = 'inline-block';
     username.textContent = usernameLogged;
+
+    if (localStorage.getItem('favorite')) {
+        let favoriteRestaurant = JSON.parse(localStorage.getItem('favorite'));
+
+        let favoriteRestaurantElement = document.getElementById('favoriteRestaurant');
+        favoriteRestaurantElement.textContent = `${favoriteRestaurant.name}`;
+    }
+
     profiiliModal.showModal();
 });
 

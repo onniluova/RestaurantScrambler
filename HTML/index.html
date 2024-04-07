@@ -18,9 +18,10 @@
         <h1>Ravintola Scrambler</h1>
     </div>
     <div class="buttons">
-        <button id="loginButton">Login</button>
-        <button id="registerButton">Register</button>
+        <button id="loginButton">Kirjaudu</button>
+        <button id="registerButton">Rekisteröidy</button>
         <button id="profiili">Profiili</button>
+        <button id="logoutButton" style="display: none;">Kirjaudu ulos</button>
     </div>
 </div>
 
@@ -34,8 +35,8 @@
             <h2 id="ravintolanNimi">Ravintolan nimi</h2>
             <p id="ravintolanOsoite"> Osoite</p>
             <div id="menus">
-                <button id="dailyButton">Daily menu</button>
-                <button id="weeklyButton">Weekly menu</button>
+                <button id="dailyButton">Päivän menu</button>
+                <button id="weeklyButton">Viikon menu</button>
             </div>
             <div id="menusBox">
             </div>
@@ -43,7 +44,7 @@
     </div>
 
     <dialog id="loginModal">
-        <form id="login" method="POST" action="/login"> <h1>Login</h1>
+        <form id="login" method="POST" action="/login"> <h1>Kirjaudu sisään</h1>
             <div>
                 <label for="username">Käyttäjänimi: </label>
             </div>
@@ -56,7 +57,7 @@
             <div>
                 <input type="password" id="salasana" name="salasana"> </div>
             <div>
-                <button type="submit">Login</button> <button id="openRegister">Register</button>
+                <button type="submit">Kirjaudu</button> <button id="openRegister">Rekisteröidy</button>
                 <button id="closeLogin">&#9932;</button>
             </div>
             <div id="loginErrorMessage"></div>
@@ -64,7 +65,7 @@
     </dialog>
 
     <dialog id="registerModal">
-        <form id="registerAccount" method="POST" action="/register"> <h1>Register</h1>
+        <form id="registerAccount" method="POST" action="/register"> <h1>Rekisteröidy</h1>
             <div>
                 <label for="rUsername">Käyttäjänimi: </label>
             </div>
@@ -78,7 +79,7 @@
                 <input type="password" id="rSalasana" name="salasana">
             </div>
             <div>
-                <button type="submit">Register</button> <button id="switchToLogin">Login</button>
+                <button type="submit">Rekisteröidy</button> <button id="switchToLogin">Kirjaudu</button>
                 <button id="closeRegister">&#9932;</button>
             </div>
             <div id="registerErrorMessage"></div>
@@ -86,12 +87,12 @@
     </dialog>
 
     <dialog id="loginSuccessModal">
-        <h1>Login Successful</h1>
+        <h1>Kirjautuminen onnistui</h1>
         <button id="closeLoginSuccess">&#9932;</button>
     </dialog>
 
     <dialog id="registerSuccessModal">
-        <h1>Registration Successful</h1>
+        <h1>Rekisteröinti onnistui</h1>
         <button id="closeRegisterSuccess">&#9932;</button>
     </dialog>
 
@@ -100,7 +101,7 @@
     <div id="profiilikuva"></div>
     <p>Käyttäjänimi</p>
     <p id="usernameBox"></p>
-    <p>Suosikki ravintola</p>
+    <p>Suosikkiravintola:</p>
     <p id="favoriteRestaurant"></p>
     <button id="closeProfile">&#9932;</button>
 </dialog>

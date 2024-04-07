@@ -43,3 +43,26 @@ closeRegister.addEventListener('click', function(event) {
     registerModal.style.display = 'none';
     registerModal.close();
 });
+
+let logoutButton = document.getElementById('logoutButton');
+
+if (localStorage.getItem('usernameLogged')) {
+    loginButton.style.display = 'none';
+    registerBtn.style.display = 'none';
+    logoutButton.style.display = 'block';
+}
+logoutButton.addEventListener('click', function() {
+    let usernameLogged = localStorage.getItem('usernameLogged');
+    localStorage.removeItem(usernameLogged);
+    localStorage.removeItem(usernameLogged + 'favorite');
+    localStorage.removeItem('favorites');
+    localStorage.removeItem('usernameLogged');
+
+    document.getElementById('usernameBox').textContent = '';
+    document.getElementById('favoriteRestaurant').textContent = '';
+
+    loginButton.style.display = 'block';
+    registerBtn.style.display = 'block';
+
+    this.style.display = 'none';
+});
