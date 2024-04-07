@@ -24,7 +24,6 @@ app.post('/register', async (req, res) => {
 
     // Store the user
     users[username] = { password: hashedPassword };
-
     res.status(201).json({ message: 'User registered' });
 });
 
@@ -45,4 +44,4 @@ app.post('/login', async (req, res) => {
     res.status(200).json({ message: 'Logged in' });
 });
 
-app.listen(3000, () => console.log('Server running on port 3000'));
+app.listen(3001, () => console.log('Server running on port 3001'));

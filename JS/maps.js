@@ -36,9 +36,11 @@ async function initMap() {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
     restaurants.forEach(restaurant => {
         let marker = L.marker([restaurant.location.coordinates[1], restaurant.location.coordinates[0]]).addTo(map)
-            .bindPopup('' + restaurant.name + "")
+            .bindPopup(`<p>${restaurant.name}</p><button id="Favorite-${restaurant._id}">Suosikki</button>`)
             .openPopup();
 
         marker.restaurantData = restaurant;
@@ -49,6 +51,14 @@ async function initMap() {
                 const data = await fetchData(`${baseUrl}/daily/${id}/fi`);
                 return data;
             }
+
+            marker.on('popupopen', function() {
+                let favoriteButton = document.getElementById(`Suosikki-${restaurant._id}`);
+                favoriteButton.addEventListener('click', function() {
+                    favorites.push(restaurant);
+                    localStorage.setItem('favorites', JSON.stringify(favorites));
+                });
+            });
 
             async function getWeeklyMenu(id) {
                 const data = await fetchData(`${baseUrl}/weekly/${id}/fi`);

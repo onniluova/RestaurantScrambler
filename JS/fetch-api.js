@@ -6,12 +6,14 @@ const rModal = document.getElementById('registerModal');
 let loginSuccessModal = document.getElementById('loginSuccessModal');
 let registerSuccessModal = document.getElementById('registerSuccessModal');
 
+let usernameLogged;
+
 loginForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const username = document.getElementById('username').value;
     const password = document.getElementById('salasana').value;
-    const response = await fetch('http://localhost:3000/login', {
+    const response = await fetch('http://localhost:3001/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -27,6 +29,7 @@ loginForm.addEventListener('submit', async (event) => {
         lModal.close();
         loginSuccessModal.showModal();
         loginSuccessModal.style.backgroundColor = 'green';
+        usernameLogged = username;
     } else {
         // Display error message
         document.getElementById('loginErrorMessage').textContent = data.message;
@@ -39,7 +42,7 @@ registerForm.addEventListener('submit', async (event) => {
     const username = document.getElementById('rUsername').value;
     const password = document.getElementById('rSalasana').value;
 
-    const response = await fetch('http://localhost:3000/register', {
+    const response = await fetch('http://localhost:3001/register', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -68,4 +71,21 @@ document.getElementById('closeLoginSuccess').addEventListener('click', function(
 
 document.getElementById('closeRegisterSuccess').addEventListener('click', function() {
     registerSuccessModal.close();
+});
+
+//Profiili modal
+let profiiliAvaus = document.getElementById('profiili');
+let profiiliModal = document.getElementById('profileModal');
+let username = document.getElementById('usernameBox');
+let closeProfile = document.getElementById('closeProfile');
+
+profiiliAvaus.addEventListener('click', function() {
+    profiiliModal.style.display = 'inline-block';
+    username.textContent = usernameLogged;
+    profiiliModal.showModal();
+});
+
+closeProfile.addEventListener('click', function(event) {
+    profiiliModal.style.display = 'none';
+    profiiliModal.close();
 });
