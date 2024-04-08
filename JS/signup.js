@@ -3,7 +3,6 @@ const signupMessage = document.getElementById("registerErrorMessage");
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
-    document.getElementById("registerAccount").reset();
 
     const username = form.rUsername.value;
     const email = form.rEmail.value;

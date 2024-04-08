@@ -1,17 +1,26 @@
-//Login modalin toiminta
 let loginButton = document.getElementById('loginButton');
 let loginModal = document.getElementById('loginModal');
 let closeButton = document.getElementById('closeLogin');
 let switchToRegister = document.getElementById('openRegister');
+let logoutButton = document.getElementById('logoutButton');
+
+
+//Register modalin toiminta
+let registerBtn = document.getElementById('registerButton');
+let registerModal = document.getElementById('registerModal');
+let closeRegister = document.getElementById('closeRegister');
+let switchToLogin = document.getElementById('switchToLogin');
 
 loginButton.addEventListener('click', function(e) {
     e.preventDefault();
+    document.getElementById("login").reset();
     loginModal.style.display = 'inline-block';
     loginModal.showModal();
 });
 
 switchToRegister.addEventListener('click', function(e) {
     e.preventDefault();
+    document.getElementById("registerAccount").reset();
     registerModal.style.display = 'inline-block';
     loginModal.style.display = 'none';
     loginModal.close();
@@ -24,13 +33,8 @@ closeButton.addEventListener('click', function(e) {
     loginModal.close();
 });
 
-//Register modalin toiminta
-let registerBtn = document.getElementById('registerButton');
-let registerModal = document.getElementById('registerModal');
-let closeRegister = document.getElementById('closeRegister');
-let switchToLogin = document.getElementById('switchToLogin');
-
 registerBtn.addEventListener('click', function() {
+    document.getElementById("registerAccount").reset();
     registerModal.style.display = 'inline-block';
     registerModal.showModal();
 });
@@ -46,8 +50,6 @@ closeRegister.addEventListener('click', function(event) {
     registerModal.style.display = 'none';
     registerModal.close();
 });
-
-let logoutButton = document.getElementById('logoutButton');
 
 if (localStorage.getItem('usernameLogged')) {
     loginButton.style.display = 'none';
