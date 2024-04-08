@@ -4,19 +4,22 @@ let loginModal = document.getElementById('loginModal');
 let closeButton = document.getElementById('closeLogin');
 let switchToRegister = document.getElementById('openRegister');
 
-loginButton.addEventListener('click', function() {
+loginButton.addEventListener('click', function(e) {
+    e.preventDefault();
     loginModal.style.display = 'inline-block';
     loginModal.showModal();
 });
 
-switchToRegister.addEventListener('click', function() {
+switchToRegister.addEventListener('click', function(e) {
+    e.preventDefault();
     registerModal.style.display = 'inline-block';
     loginModal.style.display = 'none';
     loginModal.close();
     registerModal.showModal();
 });
 
-closeButton.addEventListener('click', function(event) {
+closeButton.addEventListener('click', function(e) {
+    e.preventDefault();
     loginModal.style.display = 'none';
     loginModal.close();
 });
@@ -52,17 +55,20 @@ if (localStorage.getItem('usernameLogged')) {
     logoutButton.style.display = 'block';
 }
 logoutButton.addEventListener('click', function() {
-    let usernameLogged = localStorage.getItem('usernameLogged');
-    localStorage.removeItem(usernameLogged);
-    localStorage.removeItem(usernameLogged + 'favorite');
-    localStorage.removeItem('favorites');
-    localStorage.removeItem('usernameLogged');
+    let userData = JSON.parse(sessionStorage.getItem('data'));
+    if (userData) {
+        let usernameLogged = userData.data.username;
+        localStorage.removeItem(usernameLogged);
+        localStorage.removeItem(usernameLogged + 'favorite');
+        localStorage.removeItem('favorites');
+        localStorage.removeItem('usernameLogged');
 
-    document.getElementById('usernameBox').textContent = '';
-    document.getElementById('favoriteRestaurant').textContent = '';
+        usernameBox.textContent = '';
+        favoriteRestaurant.textContent = '';
 
-    loginButton.style.display = 'block';
-    registerBtn.style.display = 'block';
+        loginButton.style.display = 'block';
+        registerBtn.style.display = 'block';
 
-    this.style.display = 'none';
+        this.style.display = 'none';
+    }
 });

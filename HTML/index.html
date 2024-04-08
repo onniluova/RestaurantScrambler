@@ -43,7 +43,7 @@
     </div>
 
     <dialog id="loginModal">
-        <form id="login" method="POST" action="/login"> <h1>Kirjaudu sisään</h1>
+        <form id="login"> <h1>Kirjaudu sisään</h1>
             <div>
                 <label for="username">Käyttäjänimi: </label>
             </div>
@@ -51,10 +51,10 @@
                 <input type="text" id="username" name="username">
             </div>
             <div>
-                <label for="salasana">Salasana: </label>
+                <label for="password">Salasana: </label>
             </div>
             <div>
-                <input type="password" id="salasana" name="salasana"> </div>
+                <input type="password" id="password" name="password"> </div>
             <div>
                 <button type="submit">Kirjaudu</button> <button id="openRegister">Rekisteröidy</button>
                 <button id="closeLogin">&#9932;</button>
@@ -64,7 +64,7 @@
     </dialog>
 
     <dialog id="registerModal">
-        <form id="registerAccount" method="POST" action="/register"> <h1>Rekisteröidy</h1>
+        <form id="registerAccount"> <h1>Rekisteröidy</h1>
             <div>
                 <label for="rUsername">Käyttäjänimi: </label>
             </div>
@@ -72,10 +72,22 @@
                 <input type="text" id="rUsername" name="username">
             </div>
             <div>
+                <label for="rEmail">Email: </label>
+            </div>
+            <div>
+                <input type="text" id="rEmail" name="username">
+            </div>
+            <div>
                 <label for="rSalasana">Salasana: </label>
             </div>
             <div>
                 <input type="password" id="rSalasana" name="salasana">
+            </div>
+            <div>
+                <label for="rConfirmSalasana">Vahvista Salasana: </label>
+            </div>
+            <div>
+                <input type="password" id="rConfirmSalasana" name="confirmSalasana">
             </div>
             <div>
                 <button type="submit">Rekisteröidy</button> <button id="switchToLogin">Kirjaudu</button>
@@ -85,15 +97,6 @@
         </form>
     </dialog>
 
-    <dialog id="loginSuccessModal">
-        <h1>Kirjautuminen onnistui</h1>
-        <button id="closeLoginSuccess">&#9932;</button>
-    </dialog>
-
-    <dialog id="registerSuccessModal">
-        <h1>Rekisteröinti onnistui</h1>
-        <button id="closeRegisterSuccess">&#9932;</button>
-    </dialog>
 
 <dialog id="profileModal">
     <h1>Profiili</h1>
@@ -113,6 +116,8 @@
             crossorigin=""></script>
     <script type="module" src="../JS/maps.js"></script>
     <script src="../JS/buttonActions.js"></script>
-    <script src="../JS/fetch-api.js"></script>
+    <script src="../JS/signup.js"></script>
+    <script src="../JS/login.js"></script>
+    <script src="../JS/profiili.js"></script>
 </body>
 </html>

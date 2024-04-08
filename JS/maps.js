@@ -67,37 +67,40 @@ async function initMap() {
             }
 
             favoriteButton.addEventListener('click', function() {
-                let usernameLogged = localStorage.getItem('usernameLogged');
+                let userData = JSON.parse(sessionStorage.getItem('data'));
+                if (userData) {
+                    let usernameLogged = userData.data.username;
 
-                if (!usernameLogged) {
-                    alert("Sinun täytyy kirjautua sisään lisätäksesi suosikkeja.");
-                    return;
-                }
-
-                let restaurant = marker.restaurantData;
-                let favoriteRestaurants = JSON.parse(localStorage.getItem(usernameLogged)) || [];
-
-                let index = favorites.findIndex(favorite => favorite._id === restaurant._id);
-                if (index !== -1) {
-                    favorites.splice(index, 1);
-                    this.textContent = "Suosikki";
-                    setTimeout(() => {
-                        this.closest('.leaflet-popup-content').classList.remove('favorite-popup');
-                    }, 5);
-                    localStorage.removeItem('favorite');
-                } else {
-                    if (favorites.length > 0) {
-                        alert("Sinulla voi olla vain yksi suosikki ravintola.");
-                    } else {
-                        favorites.push(restaurant);
-                        this.textContent = "Poista suosikeista";
-                        setTimeout(() => {
-                            this.closest('.leaflet-popup-content').classList.add('favorite-popup');
-                        }, 5);
-                        localStorage.setItem('favorite', JSON.stringify(restaurant));
+                    if (!usernameLogged) {
+                        alert("Sinun täytyy kirjautua sisään lisätäksesi suosikkeja.");
+                        return;
                     }
+
+                    let restaurant = marker.restaurantData;
+                    let favoriteRestaurants = JSON.parse(localStorage.getItem(usernameLogged)) || [];
+
+                    let index = favorites.findIndex(favorite => favorite._id === restaurant._id);
+                    if (index !== -1) {
+                        favorites.splice(index, 1);
+                        this.textContent = "Suosikki";
+                        setTimeout(() => {
+                            this.closest('.leaflet-popup-content').classList.remove('favorite-popup');
+                        }, 5);
+                        localStorage.removeItem('favorite');
+                    } else {
+                        if (favorites.length > 0) {
+                            alert("Sinulla voi olla vain yksi suosikki ravintola.");
+                        } else {
+                            favorites.push(restaurant);
+                            this.textContent = "Poista suosikeista";
+                            setTimeout(() => {
+                                this.closest('.leaflet-popup-content').classList.add('favorite-popup');
+                            }, 5);
+                            localStorage.setItem('favorite', JSON.stringify(restaurant));
+                        }
+                    }
+                    localStorage.setItem(usernameLogged, JSON.stringify(favoriteRestaurants));
                 }
-                localStorage.setItem(usernameLogged, JSON.stringify(favoriteRestaurants));
             });
 
             marker.on('popupopen', function() {
