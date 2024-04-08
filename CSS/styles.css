@@ -21,11 +21,17 @@ html, body {
     body {
         font-size: 12px;
     }
+    #menusBox {
+        height: 100px;
+    }
 }
 
 @media only screen and (min-width: 600px) and (max-width: 900px) {
     body {
         font-size: 14px;
+    }
+    #menusBox {
+        height: 200px;
     }
 }
 
@@ -33,11 +39,17 @@ html, body {
     body {
         font-size: 16px;
     }
+    #menusBox {
+        height: 300px;
+    }
 }
 
 @media only screen and (min-width: 1200px) {
     body {
         font-size: 18px;
+    }
+    #menusBox {
+        height: 400px;
     }
 }
 
@@ -160,8 +172,7 @@ footer {
 }
 
 #menusBox {
-    max-height: 700px; /* Adjust this value as needed */
-    overflow-y: auto; /* Enable vertical scrolling */
+    overflow: auto;
 }
 
 #menus button {
