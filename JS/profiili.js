@@ -6,15 +6,15 @@ let favoriteRestaurant = document.getElementById('favoriteRestaurant');
 
 profiili.addEventListener('click', function() {
     let userData = JSON.parse(sessionStorage.getItem('data'));
-    console.log("User data:", userData); // Debugging line
+    console.log("User data:", userData);
 
     let favoriteRestaurantData = JSON.parse(localStorage.getItem('favorite'));
     if (userData) {
         usernameBox.textContent = userData.data.username;
-        console.log("Username box content:", usernameBox.textContent); // Debugging line
+        console.log("Username box content:", usernameBox.textContent);
         if (favoriteRestaurantData) {
-            favoriteRestaurant.textContent = favoriteRestaurantData.name; // Change this line
-            console.log("Favorite restaurant:", favoriteRestaurant.textContent); // Debugging line
+            favoriteRestaurant.textContent = favoriteRestaurantData.name;
+            console.log("Favorite restaurant:", favoriteRestaurant.textContent);
         }
     }
     profiiliModal.style.display = 'inline-block';

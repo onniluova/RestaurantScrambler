@@ -4,6 +4,7 @@ const loginMessage = document.getElementById("loginErrorMessage");
 
 loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    document.getElementById("login").reset();
 
     console.log("Form submitted");
     let username = loginForm.username.value;

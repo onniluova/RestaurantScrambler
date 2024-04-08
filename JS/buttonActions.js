@@ -55,9 +55,10 @@ if (localStorage.getItem('usernameLogged')) {
     logoutButton.style.display = 'block';
 }
 logoutButton.addEventListener('click', function() {
-    let userData = JSON.parse(sessionStorage.getItem('data'));
-    if (userData) {
+    if (sessionStorage.getItem('data')) {
+        let userData = JSON.parse(sessionStorage.getItem('data'));
         let usernameLogged = userData.data.username;
+        console.log("User logged out:", usernameLogged);
         localStorage.removeItem(usernameLogged);
         localStorage.removeItem(usernameLogged + 'favorite');
         localStorage.removeItem('favorites');
@@ -70,5 +71,9 @@ logoutButton.addEventListener('click', function() {
         registerBtn.style.display = 'block';
 
         this.style.display = 'none';
+
+        sessionStorage.removeItem('data');
+    } else {
+        console.log("No user is currently logged in.");
     }
 });
