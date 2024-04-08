@@ -42,4 +42,4 @@ app.post('/login', async (req, res) => {
     res.status(200).json({ message: 'Kirjautuminen onnistui' });
 });
 
-app.listen(3001, () => console.log('Servuu pyörii portilla 3001'));
+app.listen(3001, () => console.log('Servu pyörii portilla 3001'));
