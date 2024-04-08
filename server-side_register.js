@@ -24,7 +24,7 @@ app.post('/register', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     users[username] = { password: hashedPassword };
-    res.status(201).json({ message: 'User registered' });
+    res.status(201).json({ message: 'Käyttäjä rekisteröity' });
 });
 
 app.post('/login', async (req, res) => {
