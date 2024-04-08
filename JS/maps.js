@@ -27,7 +27,7 @@ async function getRestaurants() {
 }
 
 let yellowIcon = L.icon({
-    iconUrl: '/yellowmarker.png',
+    iconUrl: '../yellowmarker.png',
     iconSize: [30, 41],
     iconAnchor: [15, 25],
 });
