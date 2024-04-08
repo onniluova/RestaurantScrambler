@@ -15,6 +15,7 @@ loginButton.addEventListener('click', function(e) {
     e.preventDefault();
     document.getElementById("login").reset();
     loginModal.style.display = 'inline-block';
+    loginModal.style.opacity = "1";
     loginModal.showModal();
 });
 
@@ -36,6 +37,7 @@ closeButton.addEventListener('click', function(e) {
 registerBtn.addEventListener('click', function() {
     document.getElementById("registerAccount").reset();
     registerModal.style.display = 'inline-block';
+    registerModal.style.opacity = "1";
     registerModal.showModal();
 });
 

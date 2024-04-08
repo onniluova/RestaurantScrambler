@@ -30,9 +30,14 @@ async function signup(username, email, password) {
 
     let data = await response.json();
     if (response.ok) {
+        registerModal.style.opacity = "0";
         signupMessage.innerHTML = "Signup successful!";
         signupMessage.style.color = "green";
         sessionStorage.setItem("data", JSON.stringify(data));
+        setTimeout(() => {
+            registerModal.close();
+            registerModal.style.display = 'none';
+        }, 800);
     } else {
         if (data.message) {
             signupMessage.innerHTML = data.message;

@@ -34,6 +34,7 @@ async function login(username, password) {
             sessionStorage.setItem("data", JSON.stringify(data));
             loginMessage.innerHTML = "Login successful!";
             loginMessage.style.color = "green";
+            loginModal.style.opacity = "0";
 
             let loginButton = document.getElementById('loginButton');
             let registerButton = document.getElementById('registerButton');
@@ -47,7 +48,7 @@ async function login(username, password) {
             setTimeout(() => {
                 loginModal.close();
                 loginModal.style.display = 'none';
-            }, 2000);
+            }, 800);
         } else {
             loginMessage.innerHTML = data.message + "!";
             loginMessage.style.color = "red";
