@@ -13,7 +13,7 @@ loginForm.addEventListener('submit', async (event) => {
 
     const username = document.getElementById('username').value;
     const password = document.getElementById('salasana').value;
-    const response = await fetch('http://localhost:3001/login', {
+    const response = await fetch('https://users.metropolia.fi/~onniluo/yksilotehtava/HTML/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ registerForm.addEventListener('submit', async (event) => {
     const username = document.getElementById('rUsername').value;
     const password = document.getElementById('rSalasana').value;
 
-    const response = await fetch('http://localhost:3001/register', {
+    const response = await fetch('https://users.metropolia.fi/~onniluo/yksilotehtava/HTML/register', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
