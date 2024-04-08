@@ -14,20 +14,30 @@ html, body {
 
 .content {
     display: flex;
-    flex: 1; /* This will make the content div take up all available space */
+    flex: 1;
 }
 
-@media (max-width: 768px) {
-    .topBar .buttons {
-        flex-direction: column;
+@media only screen and (max-width: 600px) {
+    body {
+        font-size: 12px;
     }
+}
 
-    #ravintolatSection {
-        flex-direction: column;
+@media only screen and (min-width: 600px) and (max-width: 900px) {
+    body {
+        font-size: 14px;
     }
+}
 
-    #map {
-        width: 100%;
+@media only screen and (min-width: 900px) and (max-width: 1200px) {
+    body {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    body {
+        font-size: 18px;
     }
 }
 
