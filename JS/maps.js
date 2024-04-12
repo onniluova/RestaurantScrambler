@@ -1,20 +1,7 @@
+import { fetchData } from './dataFetch.js';
+
 const restaurants = [];
-
 const baseUrl = "https://10.120.32.94/restaurant/api/v1/restaurants";
-
-async function fetchData(url) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error("HTTP error, status = " + response.status);
-        } else {
-            const data = await response.json();
-            return data;
-        }
-    } catch (error) {
-        console.log("Error: ", error);
-    }
-}
 
 async function getRestaurants() {
     const data = await fetchData(baseUrl);
@@ -46,7 +33,10 @@ async function initMap() {
 
     restaurants.forEach(restaurant => {
         let marker = L.marker([restaurant.location.coordinates[1], restaurant.location.coordinates[0]], {icon: yellowIcon}).addTo(map)
-            .bindPopup(`<p class="popup-nimi">${restaurant.name}</p><button class="favorite-button" id="Favorite-${restaurant._id}">Suosikki</button>`)
+            .bindPopup(`<p class="popup-nimi">${restaurant.name}</p>
+                    <p>Yritys: ${restaurant.company}</p>
+                    <p>Kaupunki: ${restaurant.city}</p>
+                    <button class="favorite-button" id="Favorite-${restaurant._id}">Suosikki</button>`)
             .openPopup();
 
         marker.restaurantData = restaurant;
@@ -141,83 +131,94 @@ async function initMap() {
             restaurantData.courses.forEach(course => {
                 let menuItem = document.createElement("p");
 
-                let menuItemString = `${course.name} - ${course.price} - Diets: ${course.diets.join(', ')}`;
+                let diets = Array.isArray(course.diets) ? course.diets.join(', ') : 'No diets available';
+                let menuItemString = `${course.name} - ${course.price} - Diets: ${diets}`;
 
                 menuItem.innerHTML = menuItemString;
 
                 restaurantSection.appendChild(menuItem);
             });
 
-            let weeklyMenuButton = document.getElementById('weeklyButton');
-            let dailyMenuButton = document.getElementById('dailyButton');
+            let oldWeeklyButton = document.getElementById('weeklyButton');
+            let newWeeklyButton = oldWeeklyButton.cloneNode(true);
+            oldWeeklyButton.parentNode.replaceChild(newWeeklyButton, oldWeeklyButton);
 
-            weeklyMenuButton.addEventListener('click', async function() {
+            let oldDailyButton = document.getElementById('dailyButton');
+            let newDailyButton = oldDailyButton.cloneNode(true);
+            oldDailyButton.parentNode.replaceChild(newDailyButton, oldDailyButton);
+
+            newWeeklyButton.addEventListener('click', async function() {
                 let weeklyMenuData = await getWeeklyMenu(restaurant._id);
-
-                daily.innerHTML = '';
 
                 let restaurantSection = document.getElementById('menusBox');
                 restaurantSection.innerHTML = '';
 
-                let weekly = document.createElement("p");
-                weekly.innerHTML = 'Viikon menu:';
-                restaurantSection.appendChild(weekly);
+                if (Object.keys(weeklyMenuData).length === 0) {
+                    let message = document.createElement("p");
+                    message.innerHTML = 'Weekly menu not available';
+                    restaurantSection.appendChild(message);
+                } else {
+                    let weekly = document.createElement("p");
+                    weekly.innerHTML = 'Viikon menu:';
+                    restaurantSection.appendChild(weekly);
 
-                weeklyMenuData.days.forEach(day => {
-                    let table = document.createElement("table");
+                    weeklyMenuData.days.forEach(day => {
+                        let table = document.createElement("table");
 
-                    let thead = document.createElement("thead");
-                    let headerRow = document.createElement("tr");
-                    let headerCell = document.createElement("th");
-                    headerCell.textContent = day.date;
-                    headerRow.appendChild(headerCell);
-                    thead.appendChild(headerRow);
-                    table.appendChild(thead);
+                        let thead = document.createElement("thead");
+                        let headerRow = document.createElement("tr");
+                        let headerCell = document.createElement("th");
+                        headerCell.textContent = day.date;
+                        headerRow.appendChild(headerCell);
+                        thead.appendChild(headerRow);
+                        table.appendChild(thead);
 
-                    let tbody = document.createElement("tbody");
+                        let tbody = document.createElement("tbody");
 
-                    day.courses.forEach(course => {
-                        let row = document.createElement("tr");
+                        day.courses.forEach(course => {
+                            let row = document.createElement("tr");
 
-                        let nameCell = document.createElement("td");
-                        nameCell.textContent = course.name;
-                        row.appendChild(nameCell);
+                            let nameCell = document.createElement("td");
+                            nameCell.textContent = course.name;
+                            row.appendChild(nameCell);
 
-                        let priceCell = document.createElement("td");
-                        priceCell.textContent = course.price;
-                        row.appendChild(priceCell);
+                            let priceCell = document.createElement("td");
+                            priceCell.textContent = course.price;
+                            row.appendChild(priceCell);
 
-                        let dietsCell = document.createElement("td");
-                        dietsCell.textContent = course.diets.join(', ');
-                        row.appendChild(dietsCell);
+                            let dietsCell = document.createElement("td");
+                            let diets = Array.isArray(course.diets) ? course.diets.join(', ') : 'No diets available';
+                            dietsCell.textContent = diets;
+                            row.appendChild(dietsCell);
 
-                        tbody.appendChild(row);
+                            tbody.appendChild(row);
+                        });
+                        table.appendChild(tbody);
+
+                        let menusBox = document.getElementById('menusBox');
+                        menusBox.appendChild(table);
                     });
-                    table.appendChild(tbody);
+                }
+            });
 
-                    let menusBox = document.getElementById('menusBox');
-                    menusBox.appendChild(table);
-                });
+            newDailyButton.addEventListener('click', async function() {
+                let dailyMenuData = await getDailyMenu(restaurant._id);
 
-                dailyMenuButton.addEventListener('click', async function() {
-                    let dailyMenuData = await getDailyMenu(restaurant._id);
+                let restaurantSection = document.getElementById('menusBox');
+                restaurantSection.innerHTML = '';
 
-                    let restaurantSection = document.getElementById('menusBox');
-                    restaurantSection.innerHTML = '';
+                let daily = document.createElement("p");
+                daily.innerHTML = 'Päivän menu:';
+                restaurantSection.appendChild(daily);
 
-                    let daily = document.createElement("p");
-                    daily.innerHTML = 'Daily menu:';
-                    restaurantSection.appendChild(daily);
+                dailyMenuData.courses.forEach(course => {
+                    let menuItem = document.createElement("p");
 
-                    dailyMenuData.courses.forEach(course => {
-                        let menuItem = document.createElement("p");
+                    let menuItemString = `${course.name} - ${course.price} - Diets: ${course.diets.join(', ')}`;
 
-                        let menuItemString = `${course.name} - ${course.price} - Diets: ${course.diets.join(', ')}`;
+                    menuItem.innerHTML = menuItemString;
 
-                        menuItem.innerHTML = menuItemString;
-
-                        restaurantSection.appendChild(menuItem);
-                    });
+                    restaurantSection.appendChild(menuItem);
                 });
             });
         });

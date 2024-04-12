@@ -71,12 +71,15 @@ logoutButton.addEventListener('click', function() {
         usernameBox.textContent = '';
         favoriteRestaurant.textContent = '';
 
+        profilePicture.src = '';
+        profilePictureInput.value = '';
+
         loginButton.style.display = 'block';
         registerBtn.style.display = 'block';
 
         this.style.display = 'none';
 
-        sessionStorage.removeItem('data');
+        sessionStorage.clear();
     } else {
         console.log("No user is currently logged in.");
     }

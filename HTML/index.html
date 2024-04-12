@@ -26,7 +26,22 @@
 </div>
 
     <div class="middleSection">
+        <button id="openSearch">Search</button>
     </div>
+
+<dialog id="searchModal">
+    <h1>Etsi ravintoloita</h1>
+    <form id="searchForm">
+        <input type="text" id="searchInput" placeholder="Enter restaurant name">
+        <button type="submit" id="searchButton2">Etsi</button>
+        <p>Klikkaa ravintolaa tietojen näyttämiseen</p>
+    </form>
+    <ul id="restaurantList"></ul>
+    <div id="restaurantDetails"></div>
+    <button id="closeSearch">&#9932;</button>
+    <div id="dailyMenu"></div>
+    <div id="weeklyMenu"></div>
+</dialog>
 
     <div id="ravintolatSection">
         <div id="map"></div>
@@ -100,14 +115,16 @@
 
 <dialog id="profileModal">
     <h1>Profiili</h1>
-    <div id="profiilikuva"></div>
+    <div id="profiilikuva">
+        <img id="profilePicture" src="" alt="Profile Picture">
+        <input type="file" id="profilePictureInput" accept="image/*">
+    </div>
     <p>Käyttäjänimi</p>
     <p id="usernameBox"></p>
     <p>Suosikkiravintola:</p>
     <p id="favoriteRestaurant"></p>
     <button id="closeProfile">&#9932;</button>
 </dialog>
-
 
     <footer> ruokalistat.fi 2024 © </footer>
 
@@ -119,5 +136,6 @@
     <script src="../JS/signup.js"></script>
     <script src="../JS/login.js"></script>
     <script src="../JS/profiili.js"></script>
+    <script type="module" src="../JS/restaurantSearch.js"></script>
 </body>
 </html>
