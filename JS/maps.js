@@ -108,8 +108,8 @@ async function initMap() {
             let restaurantData = await getDailyMenu(restaurant._id);
 
             let restaurantDetails = this.restaurantData;
-            let restaurantName =  restaurantDetails.name;
-            let restaurantAddress =  restaurantDetails.address;
+            let restaurantName =  restaurantDetails.name ? restaurantDetails.name : '';
+            let restaurantAddress =  restaurantDetails.address ? restaurantDetails.address : '';
 
             let restaurantJson = JSON.stringify(restaurantData.courses);
 
@@ -132,7 +132,9 @@ async function initMap() {
                 let menuItem = document.createElement("p");
 
                 let diets = Array.isArray(course.diets) ? course.diets.join(', ') : 'No diets available';
-                let menuItemString = `${course.name} - ${course.price} - Diets: ${diets}`;
+                let courseName = course.name ? course.name : '';
+                let coursePrice = course.price ? course.price : '';
+                let menuItemString = `${courseName} - ${coursePrice} - Diets: ${diets}`;
 
                 menuItem.innerHTML = menuItemString;
 
@@ -179,11 +181,13 @@ async function initMap() {
                             let row = document.createElement("tr");
 
                             let nameCell = document.createElement("td");
-                            nameCell.textContent = course.name;
+                            let courseName = course.name ? course.name : '';
+                            nameCell.textContent = courseName;
                             row.appendChild(nameCell);
 
                             let priceCell = document.createElement("td");
-                            priceCell.textContent = course.price;
+                            let coursePrice = course.price ? course.price : '';
+                            priceCell.textContent = coursePrice;
                             row.appendChild(priceCell);
 
                             let dietsCell = document.createElement("td");

@@ -54,6 +54,7 @@ async function searchRestaurants(query) {
     });
 }
 
+// Funktio laskee kahden merkkijonon välisen etäisyyden
 function levenshteinDistance(a, b) {
     const matrix = [];
 
@@ -73,9 +74,9 @@ function levenshteinDistance(a, b) {
             if(a.charAt(i-1) == b.charAt(j-1)){
                 matrix[i][j] = matrix[i-1][j-1];
             } else {
-                matrix[i][j] = Math.min(matrix[i-1][j-1] + 1, // substitution
-                    Math.min(matrix[i][j-1] + 1, // insertion
-                        matrix[i-1][j] + 1)); // deletion
+                matrix[i][j] = Math.min(matrix[i-1][j-1] + 1,
+                    Math.min(matrix[i][j-1] + 1,
+                        matrix[i-1][j] + 1));
             }
         }
     }
@@ -110,8 +111,10 @@ async function displayRestaurantDetails(restaurant) {
     dailyMenuElement.appendChild(dailyMenuTitle);
     dailyMenu.courses.forEach(course => {
         let menuItem = document.createElement('p');
-        let diets = Array.isArray(course.diets) ? course.diets.join(', ') : 'No diets available';
-        menuItem.textContent = `${course.name} - ${course.price} - Diets: ${diets}`;
+        let diets = Array.isArray(course.diets) ? course.diets.join(', ') : 'Dieetit ei saatavilla';
+        let courseName = course.name ? course.name : '';
+        let coursePrice = course.price ? course.price : '';
+        menuItem.textContent = `${courseName} - ${coursePrice} - Diets: ${diets}`;
         dailyMenuElement.appendChild(menuItem);
     });
 
@@ -124,8 +127,10 @@ async function displayRestaurantDetails(restaurant) {
         weeklyMenuElement.appendChild(dayTitle);
         day.courses.forEach(course => {
             let menuItem = document.createElement('p');
-            let diets = Array.isArray(course.diets) ? course.diets.join(', ') : 'No diets available';
-            menuItem.textContent = `${course.name} - ${course.price} - Diets: ${diets}`;
+            let diets = Array.isArray(course.diets) ? course.diets.join(', ') : 'Dieetit ei saatavilla';
+            let courseName = course.name ? course.name : '';
+            let coursePrice = course.price ? course.price : '';
+            menuItem.textContent = `${courseName} - ${coursePrice} - Diets: ${diets}`;
             weeklyMenuElement.appendChild(menuItem);
         });
     });

@@ -1,5 +1,5 @@
 body {
-    font-family: "Unbounded", sans-serif;
+    font-family: "Work Sans", sans-serif;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -54,6 +54,7 @@ html, body {
 }
 
 .topBar {
+    font-family: "Work Sans", sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -82,7 +83,7 @@ html, body {
 .topBar h1 {
     padding: 10px;
     font-size: 60px;
-    color: #333; /* Dark grey text */
+    color: #333;
     transition: color 0.5s ease-in-out;
     animation: colorChange 10s infinite, wiggle 2s infinite;
 }
@@ -110,6 +111,7 @@ html, body {
 }
 
 .topBar .buttons {
+    font-family: "Work Sans", sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -135,7 +137,7 @@ html, body {
 }
 
 .middleSection {
-    font-family: "Unbounded", sans-serif;
+    font-family: "Work Sans", sans-serif;
     padding: 5px 15px;
 }
 
@@ -176,7 +178,7 @@ footer {
 }
 
 #menus button {
-    font-family: "Unbounded", sans-serif;
+    font-family: "Work Sans", sans-serif;
     font-size: 20px;
     color: #3f3f3f;
     background-color: #ffb300;
@@ -222,7 +224,7 @@ footer {
 }
 
 #openRegister, #closeLogin, #switchToLogin, #closeRegister, #login input[type="submit"], #registerAccount input[type="submit"] {
-    font-family: "Unbounded", sans-serif;
+    font-family: "Work Sans", sans-serif;
     background-color: #ffe2a3;
     color: #000000;
     font-size: 15px;
@@ -244,7 +246,7 @@ footer {
 
 #login button[type="submit"], #registerAccount button[type="submit"] {
     background-color: #ffe2a3;
-    font-family: "Unbounded", sans-serif;
+    font-family: "Work Sans", sans-serif;
     color: #000000;
     font-size: 15px;
     transition: 0.5s all;
@@ -261,14 +263,13 @@ footer {
 #login input[type="password"],
 #registerAccount input[type="text"],
 #registerAccount input[type="password"] {
-    width: 85%;               /* Make input fields wider */
+    width: 85%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #000000;
     border-radius: 4px;
 }
 
-/* Close Button Styling (More Prominent) */
 #closeLogin, #closeRegister {
     font-size: 18px;
     background: none;
@@ -295,7 +296,7 @@ footer {
 }
 
 .favorite-button {
-    font-family: "Unbounded", sans-serif;
+    font-family: "Work Sans", sans-serif;
     border: whitesmoke;
     font-size: 12px;
     border-radius: 5px;
@@ -308,12 +309,12 @@ footer {
 }
 
 .popup-nimi {
-    font-family: "Unbounded", sans-serif;
+    font-family: "Work Sans", sans-serif;
     font-size: 18px;
 }
 
 .favorite-popup {
-    color: #ffd900; /* Change this to your preferred text color */
+    color: #ffd900;
     border-color: #1c1c1c;
     transition: 0.5s all;
     font-size: 5px;
@@ -388,7 +389,7 @@ footer {
 }
 
 #openSearch {
-    font-family: "Unbounded", sans-serif;
+    font-family: "Work Sans", sans-serif;
     background-color: #ffe2a3;
     color: #000000;
     font-size: 20px;
@@ -398,7 +399,7 @@ footer {
 }
 
 #searchInput {
-    font-family: "Unbounded", sans-serif;
+    font-family: "Work Sans", sans-serif;
     width: 85%;
     padding: 10px;
     margin-bottom: 10px;
@@ -407,7 +408,7 @@ footer {
 }
 
 #searchButton2 {
-    font-family: "Unbounded", sans-serif;
+    font-family: "Work Sans", sans-serif;
     background-color: #ffe2a3;
     color: #000000;
     font-size: 20px;
