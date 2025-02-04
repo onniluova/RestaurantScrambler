@@ -1,7 +1,7 @@
 # RestaurantScrambler
 ![image](https://github.com/user-attachments/assets/1bd08908-a643-46f1-bd47-f51f58820ec8)
 
-Restaurant Scrambler is a web application that allows users to view menus from various restaurants. The application is built with JavaScript and uses CSS for styling. Data retrieval is handled via a REST API. The application requires a Metropolia VPN connection.
+Restaurant Scrambler is a web application that allows users to view menus from various restaurants. The application is built with JavaScript and uses CSS for styling. Data retrieval is handled via a REST API. The application requires a Metropolia VPN connection. The API for the app is deprecated.
 
 # User Guide
 
